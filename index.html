@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 550">
+    <title>Speech Articulator: Animated Speech Articulation Guide</title>
+  
+    <desc>
+      An animated multimedia guide to the formation of sounds in natural human languages, version 1.5. Based on data from `An Introduction to Phonetics and Phonology` (2nd ed.) by Clark and Yallop. This application was created by Doug  Schepers (doug@schepers.cc) for use in SVG-based linguistics applications.
+    </desc>
+    <metadata>
+      Speech Articulator: Animated Speech Articulation Guide
+      Copyright © 2002-2020 Douglas Alan Schepers (doug@schepers.cc)
+  
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Affero General Public License as
+      published by the Free Software Foundation, either version 3 of the
+      License, or (at your option) any later version.
+  
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU Affero General Public License for more details.
+  
+      You should have received a copy of the GNU Affero General Public License
+      along with this program.  If not, see https://www.gnu.org/licenses/.
+    </metadata>
+    
+    <text id="label" x="200" y="460" font-size="30" font-weight="bold" fill="brown" font-family="Verdana, sans-serif" text-anchor="middle">Speech Articulator</text>
+
+  <g stroke="brown" stroke-width="2" fill="pink">
+
+    <path id="head" d="M226,411 C190,338 201,286 182,231 C164,174 173,213 132,178 C125,172 126,153 94,160 S68,143 17,206 Q14,212 16,219 C-10,212 17,188 40,166 S36,132 46,105 C63,23 205,-9 264,13 S419,95 340,212 Q313,254 346,367 "/>
+
+    <path id="palette" d="M30,221 C119,224 140,201 166,207 C177,223 173,245 163,228 S144,220 90,228 Q76,238 63,240 C55,243 58,261 55,256 S51,247 48,236 C44,243 48,258 34,254 S37,238 29,221 "/>
+
+    <path id="jaw" d="M175,418 C152,370 155,346 177,305 S172,299 163,298 C183,273 161,277 159,282 Q117,264 86,280 Q69,283 64,270 T61,283 C49,279 54,259 38,267 S44,285 39,301 C27,352 55,341 101,340 S131,364 136,375 Q143,399 140,420 "/>
+
+    <path id="esophagus" d="M207,416 C205,404 198,368 193,353 C184,348 159,355 160,350 C172,344 187,346 188,345 C190,343 187,331 194,334 C197,334 208,394 212,415"/>
+
+    <path id="tongue" d="M159,283 C179,254 128,235 91,243 S59,264 86,280 "/>
+  </g>
+
+  <circle cx="175" cy="350" r="22" stroke="gray" fill="white" opacity="0.5"/>
+  <circle cx="270" cy="330" r="50" stroke="gray" fill="white" opacity="0.7"/>
+  <line x1="166" y1="330" x2="248" y2="285" stroke="gray" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <line x1="175" y1="372" x2="267" y2="380" stroke="gray" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+  <defs>
+    <radialGradient id="fade">
+      <stop offset="90%" stop-color="white" stop-opacity="1.0"/>
+      <stop offset="95%" stop-color="white" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0.0"/>
+    </radialGradient>
+    <mask id="fademask">
+      <circle cx="270" cy="330" r="50" fill="url(#fade)"/>
+    </mask>
+  </defs>
+
+  <g id="pharynx" mask="url(#fademask)">
+    <ellipse id="vocalBack" cx="270" cy="330" rx="44" ry="40" fill="pink"/>
+    <path id="gap" d="M270,309 Q285,334 284,361
+          Q279,364 270,371 262,364 256,361
+          Q256,334 270,309" fill="#87cefa" fill-opacity="0.5"/>
+    <g fill="pink" fill-rule="evenodd" stroke="brown" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path id="vocalFolds" d="M270,309 Q281,334 284,364
+             L295,360 Q291,324 275,301
+             H265 Q249,324 245,360
+             L256,364 Q259,334 270,309" fill="white" stroke="#ff6347"/>
+
+      <path
+        id="CuneiformCorniculateCartilage"
+        d="M225,322 L230,339
+             Q243,347 250,359 262,364 270,371 279,364 290,359 298,347 310,339
+             L314,322 320,326 315,339
+             Q310,354 298,364 288,378 270,374  252,378 242,364 230,354 225,339
+             L219,326 Z"
+        fill="#eee8aa"
+        stroke="#daa520"/>
+      <path id="oddThing" d="M250,299 Q270,319 290,299"/>
+      <path id="epiglottis" d="M215,327 C238,324 243,302 270,300 297,302 302,324 325,327 V324
+             C301,321 310,278 270,289 230,278 241,321 215,324 Z"/>
+    </g>
+  </g>
+
+  <g id="control-panel" transform="translate(390, 5)">
+
+    <g id="entry" role="button" transform="translate(-30, 500)">
+      <rect width="345" height="20"></rect>
+      <text x="175" y="15">Speak a word and watch the animation!</text>
+    </g>
+
+    <g id="place-controls" transform="translate(0, 0)">
+      <g id="place-labels" transform="translate(220, 0)">
+
+        <g id="bilabial-button" role="button" transform="translate(0, 25)">
+          <text id="bilabial-label" x="0" y="15">bilabial</text>
+        </g>
+        <g id="labiodental-button" role="button" transform="translate(0, 80)">
+          <text id="labiodental-label" x="0" y="15">labiodental</text>
+        </g>
+        <g id="interdental-button" role="button" transform="translate(0, 110)">
+          <text id="interdental-label" x="0" y="15">interdental</text>
+        </g>
+        <g id="dental-button" role="button" transform="translate(0, 140)">
+          <text id="dental-label" x="0" y="15">dental</text>
+        </g>
+        <g id="alveopalatal-button" role="button" transform="translate(0, 270)">
+          <text id="alveopalatal-label" x="0" y="15">alveopalatal</text>
+        </g>
+        <g id="palatal-button" role="button" transform="translate(0, 325)">
+          <text id="palatal-label" x="0" y="15">palatal</text>
+        </g>
+        <g id="velar-button" role="button" transform="translate(0, 355)">
+          <text id="velar-label" x="0" y="15">velar</text>
+        </g>
+        <g id="glottal-button" role="button" transform="translate(0, 430)">
+          <text id="glottal-label" x="0" y="15">glottal</text>
+        </g>
+      </g>
+
+
+      <g id="voiceless" transform="translate(0, 0)">
+        <text id="voiceless-label" x="50" y="15">voiceless</text>
+
+        <g id="voiceless-bilabial-button" data-place="bilabial" data-voice="voiceless" role="button" transform="translate(0, 25)">
+          <rect class="pronounce" id="p-button" width="100" height="20"/>
+          <text id="bilabial-label" x="50" y="15">p</text>
+        </g>
+        <g id="voiceless-labiodental-button" data-place="labiodental" data-voice="voiceless" role="button" transform="translate(0, 80)">
+          <rect class="pronounce" id="f-button" width="100" height="20"/>
+          <text id="labiodental-label" x="50" y="15">f</text>
+        </g>
+        <g id="voiceless-interdental-button" data-place="interdental" data-voice="voiceless" role="button" transform="translate(0, 110)">
+          <rect class="pronounce" id="th1-button" width="100" height="20"/>
+          <text id="interdental-label" x="50" y="15">th (thing)</text>
+        </g>
+        <g id="voiceless-dental-button" data-place="dental" data-voice="voiceless" role="button" transform="translate(0, 140)">
+          <rect class="pronounce" id="t-button" width="100" height="20"/>
+          <text id="dental-label" x="50" y="15">t</text>
+        </g>
+        <g id="voiceless-dental-button" data-place="dental" data-voice="voiceless" role="button" transform="translate(0, 165)">
+          <rect class="pronounce" id="s-button" width="100" height="20"/>
+          <text id="dental-label" x="50" dy="15">s</text>
+        </g>
+        <g id="voiceless-alveopalatal-button" data-place="alveopalatal" data-voice="voiceless" role="button" transform="translate(0, 270)">
+          <rect class="pronounce" id="sh-button" width="100" height="20"/>
+          <text id="alveopalatal-label" x="50" y="15">sh (shoe)</text>
+        </g>
+        <g id="voiceless-alveopalatal-button" data-place="alveopalatal" data-voice="voiceless" role="button" transform="translate(0, 295)">
+          <rect class="pronounce" id="ch-button" width="100" height="20"/>
+          <text id="alveopalatal-label"><tspan x="50" y="15">ch (chart)</tspan></text>
+        </g>
+        <g id="voiceless-velar-button" data-place="velar" data-voice="voiceless" role="button" transform="translate(0, 355)">
+          <rect class="pronounce" id="k-button" width="100" height="20"/>
+          <text id="velar-label" x="50" y="15">k</text>
+        </g>
+        <g id="voiceless-glottal-button" data-place="glottal" data-voice="voiceless" role="button" transform="translate(0, 430)">
+          <rect class="pronounce" id="uh-button" width="100" height="20"/>
+          <text id="glottal-label" x="50" y="15">uh</text>
+        </g>
+        <g id="voiceless-glottal-button" data-place="glottal" data-voice="voiceless" role="button" transform="translate(0, 455)">
+          <rect class="pronounce" id="h-button" width="100" height="20"/>
+          <text id="glottal-label" x="50" y="15">h</text>
+        </g>
+      </g>
+
+      <g id="voiced" transform="translate(110, 0)">
+        <text id="voiced-label" x="50" y="15">voiced</text>
+
+        <g id="voiced-bilabial-button" data-place="bilabial" data-voice="voiced" role="button" transform="translate(0, 25)">
+          <rect class="pronounce" id="b-button" width="100" height="20"/>
+          <text id="bilabial-label" x="50" y="15">b</text>
+        </g>
+        <g id="voiced-bilabial-button" data-place="bilabial" data-voice="voiced" role="button" transform="translate(0, 50)">
+          <rect class="pronounce" id="m-button" width="100" height="20"/>
+          <text id="bilabial-label" x="50" dy="15">m</text>
+        </g>
+        <g id="voiced-labiodental-button" data-place="labiodental" data-voice="voiced" role="button" transform="translate(0, 80)">
+          <rect class="pronounce" id="v-button" width="100" height="20"/>
+          <text id="labiodental-label" x="50" y="15">v</text>
+        </g>
+        <g id="voiced-interdental-button" data-place="interdental" data-voice="voiced" role="button" transform="translate(0, 110)">
+          <rect class="pronounce" id="th2-button" width="100" height="20"/>
+          <text id="interdental-label" x="50" y="15">th (then)</text>
+        </g>
+        <g id="voiced-dental-button" data-place="dental" data-voice="voiced" role="button" transform="translate(0, 140)">
+          <rect class="pronounce" id="d-button" width="100" height="20"/>
+          <text id="dental-label" x="50" y="15">d</text>
+        </g>
+        <g id="voiced-dental-button" data-place="dental" data-voice="voiced" role="button" transform="translate(0, 165)">
+          <rect class="pronounce" id="z-button" width="100" height="20"/>
+          <text id="dental-label" x="50" y="15">z</text>
+        </g>
+        <g id="voiced-dental-button" data-place="dental" data-voice="voiced" role="button" transform="translate(0, 190)">
+          <rect class="pronounce" id="n-button" width="100" height="20"/>
+          <text id="dental-label" x="50" dy="15">n</text>
+        </g>
+        <g id="voiced-dental-button" data-place="dental" data-voice="voiced" role="button" transform="translate(0, 215)">
+          <rect class="pronounce" id="l-button" width="100" height="20"/>
+          <text id="dental-label" x="50" dy="15">l</text>
+        </g>
+        <g id="voiced-dental-button" data-place="dental" data-voice="voiced" role="button" transform="translate(0, 240)">
+          <rect class="pronounce" id="r-button" width="100" height="20"/>
+          <text id="dental-label" x="50" dy="15">r</text>
+        </g>
+        <g id="voiced-alveopalatal-button" data-place="alveopalatal" data-voice="voiced" role="button" transform="translate(0, 270)">
+          <rect class="pronounce" id="dg-button" width="100" height="35"/>
+          <text id="alveopalatal-label"><tspan x="50" y="15">dg</tspan><tspan x="50" dy="15" class="example">(ca<tspan class="hilite">s</tspan>ual, <tspan class="hilite">j</tspan>elly)</tspan></text>
+        </g>
+        <g id="voiced-palatal-button" data-place="palatal" data-voice="voiced" role="button" transform="translate(0, 325)">
+          <rect class="pronounce" id="y-button" width="100" height="20"/>
+          <text id="palatal-label" x="50" y="15">y (yellow)</text>
+        </g>
+        <g id="voiced-velar-button" data-place="velar" data-voice="voiced" role="button" transform="translate(0, 355)">
+          <rect class="pronounce" id="g-button" width="100" height="20"/>
+          <text id="velar-label" x="50" y="15">g</text>
+        </g>
+        <g id="voiced-velar-button" data-place="velar" data-voice="voiced" role="button" transform="translate(0, 380)">
+          <rect class="pronounce" id="w-button" width="100" height="20"/>
+          <text id="velar-label" x="50" dy="15">w</text>
+        </g>
+        <g id="voiced-velar-button" data-place="velar" data-voice="voiced" role="button" transform="translate(0, 405)">
+          <rect class="pronounce" id="ng-button" width="100" height="20"/>
+          <text id="velar-label" x="50" dy="15">ng (sing)</text>
+        </g>
+      </g>
+
+      <g id="rest-button" data-place="rest" data-voice="voiceless" role="button" transform="translate(310, 180)">
+        <rect width="80" height="20"/>
+        <text id="rest-label" x="40" y="15">rest</text>
+      </g>
+
+    </g>
+
+    <g id="IPA-button" role="button" transform="translate(310, 205)">
+      <rect width="80" height="20"/>
+      <text id="ipa-label" x="40" y="15">vowels</text>
+    </g>
+  </g>
+
+
+  <g id="IPA-vowels">
+    <g id="newGroup" fill="none" stroke-linecap="round" stroke="white" stroke-width="1">
+      <line id="front-top--mid-top" x1="116" y1="61" x2="210" y2="61" stroke-dasharray="0, 25, 25"/>
+      <line id="mid-top--back-top" x1="210" y1="61" x2="301" y2="61" stroke-dasharray="0, 25, 40, 100"/>
+
+      <line id="front-top--front_open-mid" x1="116" y1="61" x2="147" y2="107"/>
+      <line id="mid-top--central_open-mid" x1="210" y1="61" x2="225" y2="107"/>
+      <line id="back-top--back_open-mid" x1="301" y1="61" x2="301" y2="107"/>
+
+      <line id="mid-top--central_open-mid" x1="147" y1="107" x2="225" y2="107"/>
+      <line id="central_open-mid--back_open-mid" x1="225" y1="107" x2="301" y2="107"/>
+
+      <line id="mid-top--close_front-mid" x1="147" y1="107" x2="177" y2="153"/>
+      <line id="central_open-mid--central_close-mid" x1="225" y1="107" x2="240" y2="153"/>
+      <line id="back_open-mid--back_close-mid" x1="301" y1="107" x2="301" y2="153"/>
+
+      <line id="close_front-mid--central_close-mid" x1="177" y1="153" x2="240" y2="153"/>
+      <line id="central_open-mid--back_open-mid" x1="240" y1="153" x2="301" y2="153"/>
+
+      <line id="close_front-mid--front-bottom" x1="177" y1="153" x2="210" y2="201"/>
+      <line id="central_open-mid--central-bottom" x1="240" y1="153" x2="257" y2="201"/>
+      <line id="back_close-mid--back-bottom" x1="301" y1="153" x2="301" y2="201"/>
+
+      <line id="front-bottom--central-bottom" x1="210" y1="201" x2="257" y2="201"/>
+      <line id="central-bottom--back-bottom" x1="257" y1="201" x2="301" y2="201"/>
+    </g>
+
+    <g fill="white" stroke="white">
+      <circle id="front-top" cx="116" cy="61" r="2"/>
+      <circle id="mid-top" cx="210" cy="61" r="2"/>
+      <circle id="back-top" cx="301" cy="61" r="2"/>
+
+      <circle id="front_open-mid" cx="147" cy="107" r="2"/>
+      <circle id="central_open-mid" cx="225" cy="107" r="2"/>
+      <circle id="back_open-mid" cx="301" cy="107" r="2"/>
+
+      <circle id="close_front-mid" cx="177" cy="153" r="2"/>
+      <circle id="central_close-mid" cx="240" cy="153" r="2"/>
+      <circle id="back_close-mid" cx="301" cy="153" r="2"/>
+
+      <circle id="front-bottom" cx="210" cy="201" r="2"/>
+      <circle id="central-bottom" cx="257" cy="201" r="1" display="none"/>
+      <circle id="back-bottom" cx="301" cy="201" r="2"/>
+
+    </g>
+
+    <g fill="brown" stroke="none" text-anchor="middle" font-family="'Lucida Sans Unicode','Doulos SIL','Arial Unicode MS',Verdana,Arial,Helvetica,sans-serif" font-size="20">
+      <text id="front-close" x="106" y="66">i</text>
+      <text id="front-close" x="131" y="66">y</text>
+      <text id="mid-close" x="199" y="66">ɨ</text>
+      <text id="mid-close" x="225" y="66">ʉ</text>
+      <text id="back-close" x="286" y="66">ɯ</text>
+      <text id="back-close" x="316" y="66">u</text>
+
+      <text id="" x="153" y="86">ɪ</text>
+      <text id="" x="169" y="86">ʏ</text>
+      <text id="" x="262" y="86">ʊ</text>
+
+      <text id="open_close-mid" x="132" y="112">e</text>
+      <text id="open_close-mid" x="163" y="112">ø</text>
+      <text id="open_central-mid" x="210" y="112">ɘ</text>
+      <text id="open_central-mid" x="240" y="112">ɵ</text>
+      <text id="open_back-mid" x="286" y="112">ɤ</text>
+      <text id="open_back-mid" x="316" y="112">o</text>
+
+      <text id="" x="234" y="134">ə</text>
+
+      <text id="close_front-mid" x="162" y="158">ɛ</text>
+      <text id="close_front-mid" x="193" y="158">œ</text>
+      <text id="central_close-mid" x="225" y="158">ɜ</text>
+      <text id="central_close-mid" x="255" y="158">ɞ</text>
+      <text id="back_close-mid" x="286" y="158">ʌ</text>
+      <text id="back_close-mid" x="316" y="158">ɔ</text>
+
+      <text id="" x="177" y="183">æ</text>
+      <text id="" x="250" y="183">ɐ</text>
+
+      <text id="front-bottom" x="195" y="206">a</text>
+      <text id="front-bottom" x="225" y="206">ɶ</text>
+      <text id="back-bottom" x="286" y="206">ɑ</text>
+      <text id="back-bottom" x="316" y="206">ɒ</text>
+
+    </g>
+    <!--
+     Vowels      Front     Central     Back
+    Close       i ∙ y     ɨ ∙ ʉ       ɯ ∙ u
+                      ɪ ʏ           ʊ
+    Close-mid       e ∙ ø   ɘ ∙ ɵ     ɤ ∙ o
+                                ə
+    Open-mid        ɛ ∙ œ     ɜ ∙ ɞ   ʌ ∙ ɔ
+                      æ           ɐ
+    Open                a ∙ ɶ         ɑ ∙ ɒ
+     -->
+  </g>
+  </svg>
+</body>
