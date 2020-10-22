@@ -1,0 +1,70 @@
+text {
+  fill: #42527e;
+  pointer-events: none;
+  text-anchor: middle;
+  font-size: 14px;
+  font-family: Verdana, sans-serif;
+  white-space: pre-line;
+}
+
+tspan {
+  text-anchor: middle;
+  white-space: nowrap;
+}
+
+.hilite {
+  font-weight: bold;
+}
+
+[data-place="bilabial"], [data-place="interdental"], [data-place="alveopalatal"], [data-place="velar"] {
+  fill: #a99e89;
+}
+
+[data-place="labiodental"], [data-place="dental"], [data-place="palatal"], [data-place="glottal"] {
+  fill: #cfc1a7;
+}
+
+#entry {
+  fill: #95a9de;
+}
+
+#rest-button, #IPA-button {
+  fill: #8c7b5b;
+}
+
+#place-controls [role=button] rect:hover,
+[role=button].active rect {
+  fill: #42527e;
+}
+
+[role=button] text {
+  stroke: none;
+  fill: white;
+  pointer-events: none;
+  text-anchor: middle;
+  font-size: 14px;
+  font-family: Verdana, sans-serif;
+}
+
+#IPA-vowels {
+  display: none;
+}
+
+#IPA-vowels.show {
+  display: inline;
+}
+
+#place-labels text {
+  stroke: none;
+  fill: black;
+  text-anchor: start;
+}
+
+body {
+  width: 100%;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
