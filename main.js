@@ -213,7 +213,6 @@ function speak(event) {
   const pronounce = pronunciation_lookup[key];
   const sound = pronounce.sound;
   say(sound);
-  //say("/ɛə(ɹ)/");
 }
 
 function say(sound) {
@@ -252,13 +251,6 @@ function ShowPosition (evt) {
   let voice = button.dataset.voice;
   animateSound(place, voice);
 };
-
-// async function animateAll (consonant) {
-//   let sound = await animateSound();
-//   let mouth = await AnimateMouth();
-//   let tongue = await AnimateTongue();
-//   let 
-// }
 
 async function animateSound (place, voice) {
   var vocalFoldsDesc = vocalFoldsArray[voice];
