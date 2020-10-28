@@ -114,7 +114,7 @@ const pronunciation_lookup = {
     "voice" : "voiceless"
   }, 
   "dg" : {
-    "sound" : "juh",
+    "sound" : "/ʒə/",
     "place" : "postalveolar",
     "voice" : "voiced"
   }, 
