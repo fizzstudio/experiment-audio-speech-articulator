@@ -7,6 +7,11 @@ text {
   white-space: pre-line;
 }
 
+#title {
+  color: white;
+  font-size: 10px;
+}
+
 tspan {
   text-anchor: middle;
   white-space: nowrap;
