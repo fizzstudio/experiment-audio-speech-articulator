@@ -9,11 +9,11 @@ let IPA_button = null;
 let IPA_vowels = null;
 
 window.onload = function() {
-  Tongue = document.getElementById("tongue");
-  palate = document.getElementById("palate");
-  Jaw = document.getElementById("jaw");
-  VocalFolds = document.getElementById("vocalFolds");
-  Cartilage = document.getElementById("CuneiformCorniculateCartilage");
+  // tongue = document.getElementById("tongue");
+  // palate = document.getElementById("palate");
+  // jaw = document.getElementById("jaw");
+  // vocalfolds = document.getElementById("vocalfolds");
+  // cartilage = document.getElementById("CuneiformCorniculateCartilage");
 
   const entry = document.getElementById("entry");
   entry.addEventListener(`click`, recognize, true);
@@ -212,7 +212,7 @@ function speak(event) {
   const key = target.id.replace("-button", "");
   const pronounce = pronunciation_lookup[key];
   const sound = pronounce.sound;
-  //say(sound);
+  say(sound);
 }
 
 function say(sound) {
@@ -239,7 +239,7 @@ function pronounce (consonants) {
     const sound = soundObject.sound;
     const place = soundObject.place;
     const voice = soundObject.voice;
-    //animateAll();
+    animateAll();
     window.setTimeout(say(sound), 100);
     window.setTimeout(animateSound(place, voice), 2000);
   });
@@ -255,12 +255,12 @@ function ShowPosition (evt) {
 var nextPath = null;
 var animationRounds = 0;
 function animateAll(place, voice) {
-  console.log(place + " " + voice);
+  // console.log(place + " " + voice);
   animationRounds++;
-  console.log("animation rounds", animationRounds);
+  // console.log("animation rounds", animationRounds);
   var changed = false;
-  articulators = ["jaw", "palate", "tongue"];
-  // articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
+  // articulators = ["cartilage"];
+  articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
   articulators.forEach((articulator) => {
     var articulator_el = document.getElementById(articulator);
     // console.log(articulator, articulator_el);
@@ -268,14 +268,17 @@ function animateAll(place, voice) {
     // console.log("currentPath " + currentPath);
     
     let articulatorObject = articulatorLookup[articulator];
-    let placeObject = articulatorObject[place];
+    let placeObject;
+    if(articulator === "vocalfolds" || articulator === "cartilage") {
+      placeObject = articulatorObject[voice];
+    }
+    else placeObject = articulatorObject[place];
     if(!placeObject) {
       placeObject = articulatorObject["rest"];
     }
-    // console.log(articulatorObject);
-    nextPath = placeObject.path;
 
-    // console.log("new anim ", nextPath);
+    // console.log(placeObject);
+    nextPath = placeObject.path;
    
     nextPath = nextPath.replace(/,/g, " ").trim();
     currentPath = currentPath.replace(/,/g, " ").trim();
@@ -309,6 +312,7 @@ function animateAll(place, voice) {
   });
   if (changed) {
     window.requestAnimationFrame(animateAll(place, voice));
+    // var requestId = requestAnimationFrame(this.animate.bind(this));
   }
 } 
 
