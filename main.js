@@ -1,8 +1,8 @@
-let Tongue = null;
-let palate = null;
-let Jaw = null;
-let VocalFolds = null;
-let Cartilage = null;
+// let Tongue = null;
+// let palate = null;
+// let Jaw = null;
+// let VocalFolds = null;
+// let Cartilage = null;
 let voiced_button = null;
 let voiceless_button = null;
 let IPA_button = null;
@@ -496,17 +496,17 @@ const articulatorLookup = {
         "path":"M30,221 C119,224 140,201 166,207 C177,223 173,245 163,228 S144,220 90,228 Q76,238 63,240 C55,243 58,261 55,256 S51,247 48,236 C44,243 48,258 34,254 S37,238 29,221",
         "desc":"The palate is in a place of rest."
       },
-      "glottal": {
-        "path":"M30,221 C119,224 140,201 166,207 C177,223 173,245 163,228 S144,220 90,228 Q76,238 63,240 C55,243 58,261 55,256 S51,247 48,236 C44,243 48,258 34,254 S37,238 29,221",
-        "desc":"The palate is in a place of rest."
-      },
+      // "glottal": {
+      //   "path":"M30,221 C119,224 140,201 166,207 C177,223 173,245 163,228 S144,220 90,228 Q76,238 63,240 C55,243 58,261 55,256 S51,247 48,236 C44,243 48,258 34,254 S37,238 29,221",
+      //   "desc":"The palate is in a place of rest."
+      // },
       "bilabial": {
         "path":"M30,221 C118,220 140,199 175,211 C182,232 182,254 170,230 S126,225 90,228 Q76,238 63,240 C55,243 58,261 55,256 S51,247 48,236 C43,241 48,258 34,255 S36,241 29,221",
-        "desc":"The palate and velum are lowered."
+        "desc":"The soft palate (velum) is lowered, allowing airflow through the nasal cavity."
       },
       "labiodental": {
         "path":"M30,221 C118,220 138,193 170,203 C179,221 178,245 165,222 S126,225 90,228 Q76,238 63,240 C55,243 58,261 55,256 S51,247 48,236 C43,229 48,258 33,250 S37,238 29,221",
-        "desc":"The palate and velum are raised."
+        "desc":"The soft palate (velum) is raised, sealing off the nasal cavity and preventing airflow."
       }
       // "pharyngeal": {
       //   "path":"M30,221 C118,220 138,193 170,203 C179,221 178,245 165,222 S126,225 90,228 Q76,238 63,240 C55,243 58,261 55,256 S51,247 48,236 C44,243 48,258 34,254 S37,238 29,221",
@@ -537,11 +537,3 @@ const articulatorLookup = {
       }
   }
 };
-
-// var vocalFoldsArray = new Array();
-// vocalFoldsArray["voiceless"] = "M270,309 Q281,334 284,364 L295,360 Q291,324 275,301 H265 Q249,324 245,360 L256,364 Q259,334 270,309";
-// vocalFoldsArray["voiced"] = "M270,309 Q271,334 271,371 L283,364 Q285,324 275,301 H265 Q254,324 257,364 L269,371 Q269,334 270,309";
-
-// var cartilageArray = new Array();
-// cartilageArray["voiceless"] = "M225,322 L230,339 Q243,347 250,359 262,364 270,371 279,364 290,359 298,347 310,339 L314,322 320,326 315,339 Q310,354 298,364 288,378 270,374 252,378 242,364 230,354 225,339 L219,326 Z";
-// cartilageArray["voiced"] = "M225,322 L230,339 Q246,351 250,359 263,359 270,371 278,359 290,359 295,351 310,339 L314,322 320,326 315,339 Q309,360 298,364 288,379 270,374  252,379 242,364 231,360 225,339 L219,326 Z";
