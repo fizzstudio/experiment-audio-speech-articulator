@@ -1,20 +1,9 @@
-// let Tongue = null;
-// let palate = null;
-// let Jaw = null;
-// let VocalFolds = null;
-// let Cartilage = null;
 let voiced_button = null;
 let voiceless_button = null;
 let IPA_button = null;
 let IPA_vowels = null;
 
 window.onload = function() {
-  // tongue = document.getElementById("tongue");
-  // palate = document.getElementById("palate");
-  // jaw = document.getElementById("jaw");
-  // vocalfolds = document.getElementById("vocalfolds");
-  // cartilage = document.getElementById("CuneiformCorniculateCartilage");
-
   const entry = document.getElementById("entry");
   entry.addEventListener(`click`, recognize, true);
 
@@ -352,84 +341,6 @@ async function animateSound (place, voice) {
   // AnimateJaw();
   // newpalate = palateDesc;
   // Animatepalate();
-};
-
-var newVocalFolds = null;
-async function AnimateVocalFolds() {
-  var currentPathVocalFolds = VocalFolds.getAttribute("d");
-  newVocalFolds = newVocalFolds.replace(/,/g, " ");
-  currentPathVocalFolds = currentPathVocalFolds.replace(/,/g, " ");
-
-  if (newVocalFolds != currentPathVocalFolds) {
-    var changed = false;
-
-    var currentNumberArray = currentPathVocalFolds.split(/\W+/);
-    var newNumberArray = newVocalFolds.split(/\W+/);
-    for (var n = 0; currentNumberArray.length > n; n++) {
-      if (currentNumberArray[n]) {
-        command = currentNumberArray[n].match(/\D/);
-        eachCurrentNum = Number(currentNumberArray[n].match(/\d+/));
-        eachNewNum = Number(newNumberArray[n].match(/\d+/));
-
-        if (eachNewNum > eachCurrentNum) {
-          eachCurrentNum++;
-          changed = true;
-        } else if (eachCurrentNum > eachNewNum) {
-          eachCurrentNum--;
-          changed = true;
-        }
-        currentNumberArray[n] = command + eachCurrentNum;
-      }
-    }
-
-    var tempPath = currentNumberArray.join(" ");
-    VocalFolds.setAttribute("d", tempPath);
-
-    if (changed) {
-      window.setTimeout("AnimateVocalFolds()", 0);
-    }
-  }
-};
-
-var newCartilage = null;
-async function AnimateCartilage() {
-  var currentPathCartilage = Cartilage.getAttribute("d");
-  newCartilage = newCartilage.replace(/,/g, " ");
-  currentPathCartilage = currentPathCartilage.replace(/,/g, " ");
-
-  if (newCartilage != currentPathCartilage) {
-    var changed = false;
-
-    var currentNumberArray = currentPathCartilage.split(/\W+/);
-    var newNumberArray = newCartilage.split(/\W+/);
-    for (var n = 0; currentNumberArray.length > n; n++) {
-      if (currentNumberArray[n]) {
-        //// console.log(currentNumberArray[n])
-        command = currentNumberArray[n].match(/\D/);
-        eachCurrentNum = Number(currentNumberArray[n].match(/\d+/));
-        eachNewNum = Number(newNumberArray[n].match(/\d+/));
-
-        // Checking for close command (close path, takes no numbers)
-        if ("Z" == command) {
-          eachCurrentNum = "";
-        } else if (eachNewNum > eachCurrentNum) {
-          eachCurrentNum++;
-          changed = true;
-        } else if (eachCurrentNum > eachNewNum) {
-          eachCurrentNum--;
-          changed = true;
-        }
-        currentNumberArray[n] = command + eachCurrentNum;
-      }
-    }
-
-    var tempPath = currentNumberArray.join(" ");
-    Cartilage.setAttribute("d", tempPath);
-
-    if (changed) {
-      window.setTimeout("AnimateCartilage()", 0);
-    }
-  }
 };
  
 const articulatorLookup = {
