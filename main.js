@@ -246,10 +246,11 @@ var animationRounds = 0;
 function animateAll(place, voice) {
   // console.log(place + " " + voice);
   animationRounds++;
-  // console.log("animation rounds", animationRounds);
+  console.log("animation rounds", animationRounds);
   var changed = false;
   // articulators = ["cartilage"];
-  articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
+  //articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
+  articulators = ["jaw", "palate", "tongue"];
   articulators.forEach((articulator) => {
     var articulator_el = document.getElementById(articulator);
     // console.log(articulator, articulator_el);
@@ -259,46 +260,50 @@ function animateAll(place, voice) {
     let articulatorObject = articulatorLookup[articulator];
     let placeObject;
     if(articulator === "vocalfolds" || articulator === "cartilage") {
-      placeObject = articulatorObject[voice];
+      //placeObject = articulatorObject[voice];
+    } else {
+      placeObject = articulatorObject[place];
     }
-    else placeObject = articulatorObject[place];
     if(!placeObject) {
       placeObject = articulatorObject["rest"];
     }
 
     // console.log(placeObject);
     nextPath = placeObject.path;
-   
-    nextPath = nextPath.replace(/,/g, " ").trim();
-    currentPath = currentPath.replace(/,/g, " ").trim();
+    if(nextPath) {
+      nextPath = nextPath.replace(/,/g, " ").trim();
+      currentPath = currentPath.replace(/,/g, " ").trim();
 
-    if (nextPath != currentPath) {
+      if (nextPath != currentPath) {
 
-      var currentNumberArray = currentPath.split(/\W+/);
-      var newNumberArray = nextPath.split(/\W+/);
-      for (var n = 0; currentNumberArray.length > n; n++) {
-        if (currentNumberArray[n]) {
-          command = currentNumberArray[n].match(/\D/);
-          eachCurrentNum = Number(currentNumberArray[n].match(/\d+/));
-          eachNewNum = Number(newNumberArray[n].match(/\d+/));
+        var currentNumberArray = currentPath.split(/\W+/);
+        var newNumberArray = nextPath.split(/\W+/);
+        for (var n = 0; currentNumberArray.length > n; n++) {
+          if (currentNumberArray[n]) {
+            command = currentNumberArray[n].match(/\D/);
+            eachCurrentNum = Number(currentNumberArray[n].match(/\d+/));
+            eachNewNum = Number(newNumberArray[n].match(/\d+/));
 
-          if ("Z" == command) {
-            eachCurrentNum = "";
-          } else if (eachNewNum > eachCurrentNum) {
-            eachCurrentNum++;
-            changed = true;
-          } else if (eachCurrentNum > eachNewNum) {
-            eachCurrentNum--;
-            changed = true;
+            if ("Z" == command) {
+              eachCurrentNum = "";
+            } else if (eachNewNum > eachCurrentNum) {
+              eachCurrentNum++;
+              changed = true;
+            } else if (eachCurrentNum > eachNewNum) {
+              eachCurrentNum--;
+              changed = true;
+            }
+
+            currentNumberArray[n] = command + eachCurrentNum;
           }
-
-          currentNumberArray[n] = command + eachCurrentNum;
         }
+        var tempPath = currentNumberArray.join(" ").trim();
+        articulator_el.setAttribute("d", tempPath);
       }
-      var tempPath = currentNumberArray.join(" ").trim();
-      articulator_el.setAttribute("d", tempPath);
     }
   });
+   
+    
   if (changed) {
     window.requestAnimationFrame(animateAll(place, voice));
     // var requestId = requestAnimationFrame(this.animate.bind(this));
