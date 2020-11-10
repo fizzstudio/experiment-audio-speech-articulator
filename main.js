@@ -248,10 +248,10 @@ function animateAll(place, voice) {
   animationRounds++;
   console.log("animation rounds", animationRounds);
   var changed = false;
-  // articulators = ["cartilage"];
   //articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
-  articulators = ["jaw", "palate", "tongue"];
+  articulators = ["tongue"];
   articulators.forEach((articulator) => {
+    //console.log(articulator);
     var articulator_el = document.getElementById(articulator);
     // console.log(articulator, articulator_el);
     var currentPath = articulator_el.getAttribute("d");
@@ -260,7 +260,7 @@ function animateAll(place, voice) {
     let articulatorObject = articulatorLookup[articulator];
     let placeObject;
     if(articulator === "vocalfolds" || articulator === "cartilage") {
-      //placeObject = articulatorObject[voice];
+      placeObject = articulatorObject[voice];
     } else {
       placeObject = articulatorObject[place];
     }
@@ -268,7 +268,7 @@ function animateAll(place, voice) {
       placeObject = articulatorObject["rest"];
     }
 
-    // console.log(placeObject);
+    //console.log(placeObject);
     nextPath = placeObject.path;
     if(nextPath) {
       nextPath = nextPath.replace(/,/g, " ").trim();
@@ -306,7 +306,6 @@ function animateAll(place, voice) {
     
   if (changed) {
     window.requestAnimationFrame(animateAll(place, voice));
-    // var requestId = requestAnimationFrame(this.animate.bind(this));
   }
 } 
 
@@ -354,10 +353,6 @@ const articulatorLookup = {
         "path":"M159,283 C179,254 128,235 91,243 S59,264 86,280", 
         "desc":"The tongue is at a place of rest near the front of the mouth."
       },
-      // "dental": {
-      //   "path":"M159,283 C173,248 129,246 85,241 S58,259 86,280",
-      //   "desc":""
-      // },
       "dental": {
         "path":"M159,283 C174,244 130,236 79,250 S67,259 86,280",
         "desc":"The tongue is positioned between the teeth."
