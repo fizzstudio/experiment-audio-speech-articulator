@@ -182,7 +182,7 @@ function recognize (event) {
   
 recognition.onresult = function(event) {
   var result = event.results[0][0].transcript;
-  // console.log("recognized " + result);
+  console.log("recognized " + result);
   var consonants = result.split(/[aeiou]/);
   for(let i = 0; i < consonants.length; i++) {
     if(consonants[i].length > 1) {
@@ -218,13 +218,14 @@ function ToggleIPA (evt) {
 };
 
 function pronounce (consonants) {
-  // console.log("pronounce " + consonants);
+  console.log("pronounce " + consonants);
   consonants.forEach((consonant) => {
-    // console.log(consonant);
+    console.log(consonant);
     let soundObject = pronunciation_lookup[consonant];
     if(!soundObject) {
       soundObject = consonantMaps[consonant];
     }
+    console.log("sound object", soundObject);
     const sound = soundObject.sound;
     const place = soundObject.place;
     const voice = soundObject.voice;
@@ -245,21 +246,21 @@ var nextPath = null;
 var animationRounds = 0;
 function animateAll(place, voice) {
   // console.log(place + " " + voice);
-  animationRounds++;
-  console.log("animation rounds", animationRounds);
+  //animationRounds++;
+  //console.log("animation rounds", animationRounds);
   var changed = false;
-  //articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
-  articulators = ["tongue"];
+  articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
+  //articulators = ["vocalfolds"];
   articulators.forEach((articulator) => {
-    //console.log(articulator);
+    console.log(articulator);
     var articulator_el = document.getElementById(articulator);
     // console.log(articulator, articulator_el);
     var currentPath = articulator_el.getAttribute("d");
     // console.log("currentPath " + currentPath);
     
     let articulatorObject = articulatorLookup[articulator];
-    let placeObject;
-    if(articulator === "vocalfolds" || articulator === "cartilage") {
+    let placeObject = articulatorObject;
+    if(articulator == "vocalfolds" || articulator == "cartilage") {
       placeObject = articulatorObject[voice];
     } else {
       placeObject = articulatorObject[place];
@@ -268,7 +269,7 @@ function animateAll(place, voice) {
       placeObject = articulatorObject["rest"];
     }
 
-    //console.log(placeObject);
+    console.log("place object",placeObject);
     nextPath = placeObject.path;
     if(nextPath) {
       nextPath = nextPath.replace(/,/g, " ").trim();
@@ -305,11 +306,11 @@ function animateAll(place, voice) {
    
     
   if (changed) {
-    window.requestAnimationFrame(animateAll(place, voice));
+    window.setTimeout(animateAll(place, voice));
   }
 } 
 
-async function animateSound (place, voice) {
+function animateSound (place, voice) {
   animateAll(place, voice);
   // var vocalFoldsDesc = vocalFoldsArray[voice];
   // newVocalFolds = vocalFoldsDesc;
@@ -440,11 +441,11 @@ const articulatorLookup = {
   "cartilage" : {
       "voiceless": {
         "path":"M225,322 L230,339 Q243,347 250,359 262,364 270,371 279,364 290,359 298,347 310,339 L314,322 320,326 315,339 Q310,354 298,364 288,378 270,374 252,378 242,364 230,354 225,339 L219,326 Z",
-        "desc":""
+        "desc":"The cuneiform cartilage is supporting the open vocal cords to produce voiceless sound. "
       },
       "voiced": {
         "path":"M225,322 L230,339 Q246,351 250,359 263,359 270,371 278,359 290,359 295,351 310,339 L314,322 320,326 315,339 Q309,360 298,364 288,379 270,374  252,379 242,364 231,360 225,339 L219,326 Z",
-        "desc":""
+        "desc":"The cuneiform cartilage is supporting the closed vocal cords to produce voiced sound."
       }
   }
 };
