@@ -183,7 +183,8 @@ function recognize (event) {
 recognition.onresult = function(event) {
   var result = event.results[0][0].transcript;
   console.log("recognized " + result);
-  var consonants = result.split(/[aeiou]/);
+  var lower = result.toLowerCase();
+  var consonants = lower.split(/[aeiou]/);
   for(let i = 0; i < consonants.length; i++) {
     if(consonants[i].length > 1) {
       if(consonants[i].charAt(0) === consonants[i].charAt(1)) {
@@ -260,7 +261,7 @@ function animateAll(place, voice) {
     
     let articulatorObject = articulatorLookup[articulator];
     let placeObject = articulatorObject;
-    if(articulator == "vocalfolds" || articulator == "cartilage") {
+    if(articulator === "vocalfolds" || articulator === "cartilage") {
       placeObject = articulatorObject[voice];
     } else {
       placeObject = articulatorObject[place];
@@ -303,10 +304,9 @@ function animateAll(place, voice) {
       }
     }
   });
-   
-    
+
   if (changed) {
-    window.setTimeout(animateAll(place, voice));
+    window.setTimeout(animateAll(place, voice), 0);
   }
 } 
 
