@@ -230,9 +230,10 @@ function pronounce (consonants) {
     const sound = soundObject.sound;
     const place = soundObject.place;
     const voice = soundObject.voice;
-    animateAll();
+    animateAll(place, voice);
     window.setTimeout(say(sound), 100);
-    window.setTimeout(animateSound(place, voice), 2000);
+    //window.setTimeout(animateSound(place, voice), 2000);
+    //animateSound(place,voice);
   });
 };
 
@@ -240,7 +241,7 @@ function ShowPosition (evt) {
   var button = evt.target.parentNode;
   let place = button.dataset.place;
   let voice = button.dataset.voice;
-  animateSound(place, voice);
+  animateAll(place, voice);
 };
 
 var nextPath = null;
