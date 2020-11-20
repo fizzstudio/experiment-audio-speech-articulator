@@ -179,12 +179,14 @@ recognition.maxAlternatives = 1;
 function recognize (event) {
   recognition.start();
 }
-  
+
+var consonants = null;
+let c = 0; 
 recognition.onresult = function(event) {
   var result = event.results[0][0].transcript;
   console.log("recognized " + result);
   var lower = result.toLowerCase();
-  var consonants = lower.split(/[aeiou]/);
+  consonants = lower.split(/[aeiou]/);
   for(let i = 0; i < consonants.length; i++) {
     if(consonants[i].length > 1) {
       if(consonants[i].charAt(0) === consonants[i].charAt(1)) {
@@ -192,11 +194,11 @@ recognition.onresult = function(event) {
       } else if(consonants[i] === "th") consonants[i] += "1";
     }
   }
+  c = 0;
   pronounce(consonants);
 }
 
 var synth = window.speechSynthesis;
-
 function speak(event) {
   const target = event.target;
   const key = target.id.replace("-button", "");
@@ -220,7 +222,34 @@ function ToggleIPA (evt) {
 
 function pronounce (consonants) {
   console.log("pronounce " + consonants);
-  consonants.forEach((consonant) => {
+  // replace for each with call to nextChar
+  nextChar(); 
+  // consonants.forEach((consonant) => {
+  //   nextChar(consonant); 
+  //   console.log(consonant);
+  //   let soundObject = pronunciation_lookup[consonant];
+  //   if(!soundObject) {
+  //     soundObject = consonantMaps[consonant];
+  //   }
+  //   console.log("sound object", soundObject);
+  //   const sound = soundObject.sound;
+  //   const place = soundObject.place;
+  //   const voice = soundObject.voice;
+  //   animateAll(place, voice);
+  //   //window.setTimeout(say(sound), 100);
+  // });
+};
+
+function ShowPosition (evt) {
+  var button = evt.target.parentNode;
+  let place = button.dataset.place;
+  let voice = button.dataset.voice;
+  animateAll(place, voice);
+};
+
+function nextChar() {
+  let consonant = consonants[c++];
+  if(consonant) {
     console.log(consonant);
     let soundObject = pronunciation_lookup[consonant];
     if(!soundObject) {
@@ -231,35 +260,23 @@ function pronounce (consonants) {
     const place = soundObject.place;
     const voice = soundObject.voice;
     animateAll(place, voice);
-    window.setTimeout(say(sound), 100);
-    //window.setTimeout(animateSound(place, voice), 2000);
-    //animateSound(place,voice);
-  });
-};
-
-function ShowPosition (evt) {
-  var button = evt.target.parentNode;
-  let place = button.dataset.place;
-  let voice = button.dataset.voice;
-  animateAll(place, voice);
+    say(sound);
+  }
+  
 };
 
 var nextPath = null;
 var animationRounds = 0;
 function animateAll(place, voice) {
-  // console.log(place + " " + voice);
-  //animationRounds++;
-  //console.log("animation rounds", animationRounds);
   var changed = false;
   articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
   //articulators = ["vocalfolds"];
   articulators.forEach((articulator) => {
-    console.log(articulator);
+    // console.log(articulator);
     var articulator_el = document.getElementById(articulator);
     // console.log(articulator, articulator_el);
     var currentPath = articulator_el.getAttribute("d");
     // console.log("currentPath " + currentPath);
-    
     let articulatorObject = articulatorLookup[articulator];
     let placeObject = articulatorObject;
     if(articulator === "vocalfolds" || articulator === "cartilage") {
@@ -270,15 +287,12 @@ function animateAll(place, voice) {
     if(!placeObject) {
       placeObject = articulatorObject["rest"];
     }
-
-    console.log("place object",placeObject);
+    // console.log("place object",placeObject);
     nextPath = placeObject.path;
     if(nextPath) {
       nextPath = nextPath.replace(/,/g, " ").trim();
       currentPath = currentPath.replace(/,/g, " ").trim();
-
       if (nextPath != currentPath) {
-
         var currentNumberArray = currentPath.split(/\W+/);
         var newNumberArray = nextPath.split(/\W+/);
         for (var n = 0; currentNumberArray.length > n; n++) {
@@ -286,7 +300,6 @@ function animateAll(place, voice) {
             command = currentNumberArray[n].match(/\D/);
             eachCurrentNum = Number(currentNumberArray[n].match(/\d+/));
             eachNewNum = Number(newNumberArray[n].match(/\d+/));
-
             if ("Z" == command) {
               eachCurrentNum = "";
             } else if (eachNewNum > eachCurrentNum) {
@@ -296,7 +309,6 @@ function animateAll(place, voice) {
               eachCurrentNum--;
               changed = true;
             }
-
             currentNumberArray[n] = command + eachCurrentNum;
           }
         }
@@ -305,9 +317,10 @@ function animateAll(place, voice) {
       }
     }
   });
-
   if (changed) {
     window.setTimeout(animateAll(place, voice), 0);
+  } else {
+    nextChar();
   }
 } 
 
