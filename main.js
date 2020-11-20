@@ -195,7 +195,7 @@ recognition.onresult = function(event) {
     }
   }
   c = 0;
-  pronounce(consonants);
+  nextChar();
 }
 
 var synth = window.speechSynthesis;
@@ -220,26 +220,6 @@ function ToggleIPA (evt) {
   IPA_vowels.classList.toggle(`show`);
 };
 
-function pronounce (consonants) {
-  console.log("pronounce " + consonants);
-  // replace for each with call to nextChar
-  nextChar(); 
-  // consonants.forEach((consonant) => {
-  //   nextChar(consonant); 
-  //   console.log(consonant);
-  //   let soundObject = pronunciation_lookup[consonant];
-  //   if(!soundObject) {
-  //     soundObject = consonantMaps[consonant];
-  //   }
-  //   console.log("sound object", soundObject);
-  //   const sound = soundObject.sound;
-  //   const place = soundObject.place;
-  //   const voice = soundObject.voice;
-  //   animateAll(place, voice);
-  //   //window.setTimeout(say(sound), 100);
-  // });
-};
-
 function ShowPosition (evt) {
   var button = evt.target.parentNode;
   let place = button.dataset.place;
@@ -262,7 +242,6 @@ function nextChar() {
     animateAll(place, voice);
     say(sound);
   }
-  
 };
 
 var nextPath = null;
@@ -270,13 +249,9 @@ var animationRounds = 0;
 function animateAll(place, voice) {
   var changed = false;
   articulators = ["jaw", "palate", "tongue", "vocalfolds", "cartilage"];
-  //articulators = ["vocalfolds"];
   articulators.forEach((articulator) => {
-    // console.log(articulator);
     var articulator_el = document.getElementById(articulator);
-    // console.log(articulator, articulator_el);
     var currentPath = articulator_el.getAttribute("d");
-    // console.log("currentPath " + currentPath);
     let articulatorObject = articulatorLookup[articulator];
     let placeObject = articulatorObject;
     if(articulator === "vocalfolds" || articulator === "cartilage") {
@@ -287,7 +262,6 @@ function animateAll(place, voice) {
     if(!placeObject) {
       placeObject = articulatorObject["rest"];
     }
-    // console.log("place object",placeObject);
     nextPath = placeObject.path;
     if(nextPath) {
       nextPath = nextPath.replace(/,/g, " ").trim();
@@ -323,44 +297,6 @@ function animateAll(place, voice) {
     nextChar();
   }
 } 
-
-function animateSound (place, voice) {
-  animateAll(place, voice);
-  // var vocalFoldsDesc = vocalFoldsArray[voice];
-  // newVocalFolds = vocalFoldsDesc;
-
-  // var cartilageDesc = cartilageArray[voice];
-  // newCartilage = cartilageDesc;
-
-  // AnimateVocalFolds();
-  // AnimateCartilage();
-
-  // var jawPosition = place;
-  // if (!jawArray[place]) {
-  //   jawPosition = "rest";
-  // }
-  // var jawDesc = jawArray[jawPosition];
-
-  // var palatePosition = place;
-  // if (!palateArray[place]) {
-  //   palatePosition = "pharyngeal";
-  // }
-  // var palateDesc = palateArray[palatePosition];
-
-  // var tonguePosition = place;
-  // if (!tongueArray[place]) {
-  //   tonguePosition = "rest";
-  // }
-  // var tongueDesc = tongueArray[tonguePosition];
-
-  // newTongue = tongueDesc;
-  // AnimateTongue();
-
-  // newJaw = jawDesc;
-  // AnimateJaw();
-  // newpalate = palateDesc;
-  // Animatepalate();
-};
  
 const articulatorLookup = {
   "tongue" : {
